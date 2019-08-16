@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/css/layouts/master-layout.css" rel="stylesheet" type="text/css" />
+
+    <link href="/css/sol.css" rel="stylesheet" type="text/css" />
+
+    <script src="/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="/js/sol.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            // initialize sol
+            $('#author').searchableOptionList();
+        });
+    </script>
+<!--
+    <link href="/css/sol.css" rel="stylesheet" type="text/css" />
+-->
+    <title>eShop Book Store</title>
+</head>
+<body>
+
+
+<div class = "container">
+
+<nav th:fragment="navbar-top" class = "container">
+    <div id="templatemo_container" class = "container">
+        <div id="templatemo_menu" class = "container">
+            <ul>
+                <li><a th:href="@{/home}" class="current">Home</a></li>
+                <li><a th:href="@{/listBook}">Browse</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_SUPPLIER')" class="nav-item">
+                    <a class="nav-link" th:href="@{/showBookForm}" >Register Books</a>
+                </li>
+
+
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{~/profile/index}">Profile</a>
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{~/admin/index}">Admin</a>
+                </li>
+<!--                <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPPLIER')" class="nav-item">-->
+<!--                    <a class="nav-link" href="#" th:href="@{~/supplier/index}">Supplier</a>-->
+<!--                </li>-->
+
+            </ul>
+            <div class="forloginbuttom">
+                <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+                    <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm btn-dark" type="submit">Logout</button>
+                    <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn my-2 my-sm-0 btn-sm btn-dark" type="submit">Login</button>
+                    <li sec:authorize="isAnonymous()" class="forloginbuttom"><a th:href="@{/register}">Sign Up</a></li>
+                </form>
+            </div>
+
+            <div  th:fragment="search">
+                <form class="form-inline mr-auto" method="get"
+                      action="/eshop/book/search">
+                    <input class="form-control" type="text" placeholder="Search"
+                           name="search" aria-label="Search">
+                    <button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2 btn-dark"
+                            type="submit">Search Books</button>
+                </form>
+            </div>
+<!--            <div class="forloginbuttom">-->
+<!--            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">-->
+<!--                <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm btn-dark" type="submit">Logout</button>-->
+<!--                <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn my-2 my-sm-0 btn-sm btn-dark" type="submit">Login</button>-->
+<!--            </form>-->
+<!--            </div>-->
+        </div>
+    </div>
+</nav>
+
+
+<div th:fragment="footer" class="container" >
+    <div class="row">
+        <div id="footerbgimage" class="col-md-6">
+
+        </div>
+
+        <div id="footerbgimage" class="col-md-6">
+        </div>
+    </div>
+    <div id = "templatemo_footer" class="container">
+        <h6>Copyright &copy; Addisu, Getaneh, Sod and Surafel</h6>
+    </div>
+</div>
+<!-- https://getbootstrap.com -->
+</div>
+</body>
+</html>

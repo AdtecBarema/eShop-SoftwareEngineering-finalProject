@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head th:insert="/layouts/master-layout :: header" />
+
+<body>
+<nav th:replace="layouts/master-layout :: navbar-top" />
+<div class="container">
+    <p class="alert">Supplier is logged in. </p>
+    <span class="container" style="align-content: center">
+        Here, Supplier Home Page
+    </span>
+</div>
+</body>
+
+<div th:replace="layouts/master-layout :: footer"></div>
+</html>
